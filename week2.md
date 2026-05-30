@@ -4,33 +4,34 @@
 
 * Read Joomla 4 beginner documentation to understand the admin panel structure and how CMS differs from static sites: https://docs.joomla.org/J4.x:Getting_Started_with_Joomla
 * Watched Joomla installation guide to understand the 1-click installer process on shared hosting
-* Read InfinityFree support docs to understand how to install Joomla via the control panel: https://infinityfree.com/support/
-* Reviewed Joomla template customisation docs to understand Cassiopeia template options: https://docs.joomla.org/J4.x:Cassiopeia_Template_Customisation
+* Read InfinityFree support docs to understand how Joomla installs on shared hosting environments: https://infinityfree.com/support/
+* Reviewed Joomla template customisation docs to understand what the Cassiopeia template allows you to change: https://docs.joomla.org/J4.x:Cassiopeia_Template_Customisation
+* Researched the PHP `get_current_user()` error on the Joomla issue tracker to understand why the template file editor was crashing on InfinityFree: https://issues.joomla.org/tracker/joomla-cms/35196
 
 ## Estimated Hours of Explicit Learning Activity
 
-Approximately 2.5 hours
+Approximately 3 hours
 
 ## Content Insights
 
-* Joomla is a CMS (Content Management System) — unlike my Week 1 static HTML site, Joomla stores all content in a MySQL database and uses PHP to render pages dynamically. I don't write HTML directly; instead I create "Articles" through an admin panel and Joomla handles the output.
+* Joomla is a CMS (Content Management System), which means instead of writing HTML and CSS files manually like in Week 1, you manage your site through an admin panel. Content is stored in a MySQL database and rendered dynamically using PHP. On the surface this sounds easier — but coming from a background where I built my Week 1 site by hand, Joomla felt surprisingly restrictive.
 
-* I installed Joomla on InfinityFree using the 1-click installer through the hosting control panel. This was much faster than manually uploading files — the installer handled the database setup and file extraction automatically.
+* Installing Joomla on InfinityFree was straightforward using the 1-click installer in the hosting control panel. It automatically set up the database, extracted the files, and configured the basic settings. That part was genuinely easy and much faster than manual deployment.
 
-* Customising the Cassiopeia template was done through **System → Site Template Styles → Advanced**, where I set the site title to "FactoryBridge", added the tagline "Connect Directly With Chinese Manufacturers", changed the colour theme to Dark, and set the font to Roboto.
+* The real challenge started when I tried to customise the site. Joomla's Cassiopeia template gives you a limited set of options — you can change the colour theme, font, title, and tagline, but that's about it without touching code. Compared to Week 1 where I could make the site look exactly how I wanted by writing my own Bootstrap components, Joomla felt like working with both hands tied behind my back.
 
-* I created three articles in Joomla — Home, About, and Contact — and linked them to the Main Menu so they appear in the navigation bar. This is different from Week 1 where I manually wrote anchor tags in HTML.
+* I ran into a frustrating server-level error when trying to edit the `user.css` file through Joomla's template editor. InfinityFree disables the PHP function `get_current_user()`, which causes Joomla's file editor to crash with a fatal error every time you try to save. This meant I could not customise the CSS through the normal Joomla workflow at all.
 
-* I ran into a major issue trying to customise the CSS: InfinityFree disables the PHP function `get_current_user()`, which causes Joomla's template file editor to crash with a fatal error when trying to save files. This meant I could not edit `user.css` through the Joomla admin panel directly.
+* I tried multiple workarounds — injecting CSS through a Custom HTML module using a `<style>` tag, editing the file through InfinityFree's File Manager, and creating the `user.css` file in different locations. Some partially worked but the styles didn't always apply correctly due to how Cassiopeia loads its stylesheets. It was genuinely frustrating to spend so much time on something that should have been a simple CSS edit.
 
-* As a workaround, I tried injecting CSS through a Custom HTML module using a `<style>` tag, and also attempted to edit the file through InfinityFree's File Manager directly. This taught me that budget hosting providers often have PHP restrictions that can break CMS features unexpectedly.
+* Despite the CSS issues, I successfully created three articles (Home, About, Contact), linked them to the Main Menu, moved the navigation to the topbar, unpublished the Login Form module, and customised the template title and tagline to match FactoryBridge branding.
 
 ## Career/Employability/Learning Insights
 
-This week highlighted a key difference between building a static site and using a CMS. With static HTML, I have full control over every line of code. With Joomla, the CMS abstracts a lot of that away — which is great for non-technical users but can feel limiting when you want to do something custom.
+This week gave me a much more honest perspective on CMS platforms. Before this prac, I thought Joomla would make things easier. In some ways it does — non-technical users can update content without touching code, and installation is fast. But as someone who already knows HTML and CSS, I found it more frustrating than helpful. I kept wanting to just open a file and edit it directly, but Joomla puts layers of abstraction between you and the actual code.
 
-The most valuable lesson this week was dealing with the InfinityFree PHP restriction. In a real work environment, hitting a server-level error like `Call to undefined function get_current_user()` would require either escalating to a sysadmin or migrating to a better hosting provider. It taught me that deployment environments matter — the same Joomla installation can behave very differently depending on the server configuration.
+The most eye-opening part of this week was hitting the InfinityFree PHP restriction. A core Joomla feature — editing template files — was completely broken because the hosting provider disabled a standard PHP function. This is the kind of problem you would never encounter on localhost, and it taught me something important: the hosting environment is not just a place to put your files. It actively shapes what you can and cannot do with your application. In a professional setting, this would be a conversation with a sysadmin or a reason to switch hosting providers entirely.
 
-I also noticed that Joomla's admin panel has a much steeper learning curve than I expected. Finding where to change templates, modules, menus, and articles requires navigating a complex backend. WordPress is generally considered more beginner-friendly, so I'm curious to compare them in the next prac.
+I also started to understand why developers often prefer building custom sites over using a CMS. When I built the FactoryBridge site in Week 1 with plain HTML and Bootstrap, I had complete control — every pixel, every colour, every animation was exactly what I wanted. With Joomla, I spent most of my time fighting the system instead of building something. That said, I can see the value of Joomla for clients who need to manage their own content without a developer, which is a real and common use case.
 
-Understanding how a CMS separates content from presentation (articles vs templates vs modules) is a fundamental web development concept that will be useful when working with any CMS platform in a professional setting.
+I'm curious to see how WordPress compares in the next prac. WordPress has a much larger ecosystem of themes and plugins, so hopefully the customisation experience will feel less limiting. But this week made me appreciate that knowing how to hand-code a site is still a genuinely useful skill — even in a world full of CMS platforms.
